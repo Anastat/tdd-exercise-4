@@ -17,11 +17,7 @@ export class Shop {
 
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != AGED_BRIE && this.items[i].name != TAFKAL80ETC && this.items[i].name != SULFARUS) {
-        if (this.items[i].quality > 0) {
-          this.items[i].quality = this.items[i].quality - 1;
-        }
-      } else {
+      if (this.items[i].name == AGED_BRIE || this.items[i].name == TAFKAL80ETC || this.items[i].name == SULFARUS) {
         if (this.items[i].quality < 50) {
           this.items[i].quality = this.items[i].quality + 1;
           if (this.items[i].name == TAFKAL80ETC) {
@@ -33,6 +29,10 @@ export class Shop {
             }
           }
         }
+      } else {
+        if (this.items[i].quality > 0) {
+          this.items[i].quality = this.items[i].quality - 1;
+        }
       }
       if (this.items[i].name != SULFARUS) {
         this.items[i].sellIn = this.items[i].sellIn - 1;
@@ -43,14 +43,12 @@ export class Shop {
             this.items[i].quality = this.items[i].quality + 1;
           }
         } else {
-          if (this.items[i].name != TAFKAL80ETC) {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != SULFARUS) {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
+          if (this.items[i].name == TAFKAL80ETC) {
+            this.items[i].quality = 0;
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            if (this.items[i].name != SULFARUS && this.items[i].quality > 0) {
+              this.items[i].quality = this.items[i].quality - 1;
+            }
           }
         }
       }
