@@ -83,10 +83,10 @@ describe("Gilded Rose", () => {
     expect(items[0].quality).to.equal(1);
   });
 
-  test("quality and selllIn of 'Sulfuras, Hand of Ragnaros' are same if sellIn is less than 0 and quality is 50", () => {
-    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", -1, 50)]);
+  test("quality and selllIn of 'Sulfuras, Hand of Ragnaros' are same if sellIn is less than 0 and quality is 80", () => {
+    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", -1, 80)]);
     const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(50);
+    expect(items[0].quality).to.equal(80);
     expect(items[0].sellIn).to.equal(-1);
   });
 });
