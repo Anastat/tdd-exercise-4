@@ -38,7 +38,11 @@ export class Shop {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
       if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != AGED_BRIE) {
+        if (this.items[i].name == AGED_BRIE) {
+          if (this.items[i].quality < 50) {
+            this.items[i].quality = this.items[i].quality + 1;
+          }
+        } else {
           if (this.items[i].name != TAFKAL80ETC) {
             if (this.items[i].quality > 0) {
               if (this.items[i].name != SULFARUS) {
@@ -47,10 +51,6 @@ export class Shop {
             }
           } else {
             this.items[i].quality = this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
           }
         }
       }
