@@ -58,7 +58,7 @@ describe("Gilded Rose", () => {
     expect(items[0].quality).to.equal(0);
   });
 
-  test("sellIn of 'Backstage passes to a TAFKAL80ETC concert' is dicreased by 1 and quality is increase by 3", () => {
+  test("sellIn of 'Backstage passes to a TAFKAL80ETC concert' is dicreased by 1 and quality is increase by 3 if sellIn is 5 and quality is 11", () => {
     const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 5, 11)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(4);

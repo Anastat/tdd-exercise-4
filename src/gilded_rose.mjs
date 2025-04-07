@@ -1,5 +1,5 @@
 const AGED_BRIE = "Aged Brie";
-const TAFKAL80ETC = "Backstage passes to a TAFKAL80ETC concert";
+const BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 const SULFURAS = "Sulfuras, Hand of Ragnaros";
 
 export class Item {
@@ -20,18 +20,20 @@ export class Shop {
       if (this.items[i].name == SULFURAS) {
         continue;
       }
-      if (this.items[i].name == AGED_BRIE || this.items[i].name == TAFKAL80ETC) {
+
+      if (this.items[i].name == AGED_BRIE) {
         if (this.items[i].quality < 50) {
           this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == TAFKAL80ETC) {
-            if (this.items[i].sellIn < 11 && this.items[i].quality < 50) {
-              this.items[i].quality = this.items[i].quality + 1;
-            }
-            if (this.items[i].sellIn < 6 && this.items[i].quality < 50) {
-              this.items[i].quality = this.items[i].quality + 1;
-            }
-          }
         }
+      } else if (this.items[i].name == BACKSTAGE_PASSES) {
+        if (this.items[i].sellIn <= 10 && this.items[i].sellIn > 5) {
+          this.items[i].quality = this.items[i].quality + 2;
+        } else if (this.items[i].sellIn <= 5) {
+          this.items[i].quality = this.items[i].quality + 3;
+        } else {
+          this.items[i].quality = this.items[i].quality + 1;
+        }
+        this.items[i].quality = this.items[i].quality > 50 ? 50 : this.items[i].quality;
       } else {
         if (this.items[i].quality > 0) {
           this.items[i].quality = this.items[i].quality - 1;
@@ -46,7 +48,7 @@ export class Shop {
             this.items[i].quality = this.items[i].quality + 1;
           }
         } else {
-          if (this.items[i].name == TAFKAL80ETC) {
+          if (this.items[i].name == BACKSTAGE_PASSES) {
             this.items[i].quality = 0;
           } else {
             if (this.items[i].quality > 0) {
