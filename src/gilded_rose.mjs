@@ -1,6 +1,7 @@
 const AGED_BRIE = "Aged Brie";
 const BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 const SULFURAS = "Sulfuras, Hand of Ragnaros";
+const CONJURED = "Conjured";
 
 export class Item {
   constructor(name, sellIn, quality) {
@@ -41,6 +42,13 @@ export class Shop {
             this.items[i].quality = this.items[i].quality + 3;
           } else {
             this.items[i].quality = this.items[i].quality + 1;
+          }
+          break;
+        case CONJURED:
+          if (this.items[i].sellIn < 0) {
+            this.items[i].quality = this.items[i].quality - 4;
+          } else {
+            this.items[i].quality = this.items[i].quality - 2;
           }
           break;
         default:

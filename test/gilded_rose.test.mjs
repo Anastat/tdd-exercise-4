@@ -71,13 +71,13 @@ describe("Gilded Rose", () => {
     expect(items[0].quality).to.equal(0);
   });
 
-  test("quality of 'foo' is decrease by 2 if sellIn is less than 0 and quality is more than 0", () => {
+  test("quality of 'foo' is decreased by 2 if sellIn is less than 0 and quality is greater than 0", () => {
     const gildedRose = new Shop([new Item("foo", -1, 2)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(0);
   });
 
-  test("quality of 'foo' is decrease by 1 if sellIn is more than 0 and quality is more than 0", () => {
+  test("quality of 'foo' is decreased by 1 if sellIn is greater than 0 and quality is greater than 0", () => {
     const gildedRose = new Shop([new Item("foo", 1, 2)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(1);
@@ -88,5 +88,17 @@ describe("Gilded Rose", () => {
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(80);
     expect(items[0].sellIn).to.equal(-2);
+  });
+
+  test("quality of 'Conjured' is decreased by 4 if sell by date has passed", () => {
+    const gildedRose = new Shop([new Item("Conjured", 0, 45)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(41);
+  });
+
+  test("quality of 'Conjured' is decreased by 2 if sell by date is more than 0", () => {
+    const gildedRose = new Shop([new Item("Conjured", 1, 30)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(28);
   });
 });
